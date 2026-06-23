@@ -1,0 +1,6 @@
+{
+  "name": "LLM Bench",
+  "description": "The premier tool-calling benchmark for LLMs and agents. Test, validate, and optimize function calling capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
