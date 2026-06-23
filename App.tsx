@@ -9,7 +9,7 @@ import { BenchResults } from './src/components/BenchResults';
 import { ComparisonView } from './src/components/ComparisonView';
 import { ScenarioBuilder } from './src/components/ScenarioBuilder';
 import { ModelManagerModal } from './src/components/ModelManagerModal';
-import { LayoutGrid, BarChart2, Sun, Moon, GitCompare, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LayoutGrid, BarChart2, Sun, Moon, GitCompare, Menu, X, ChevronLeft, ChevronRight, Github } from 'lucide-react';
 import { Model } from './types';
 
 
@@ -306,6 +306,16 @@ const App: React.FC = () => {
               <span className="text-lg">⚙️</span>
               <span>Customize Models</span>
             </button>
+
+            <a
+              href="https://github.com/Of-Arte/LLM-Bench"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5"
+            >
+              <Github size={18} />
+              <span>GitHub Repository</span>
+            </a>
           </nav>
 
           {/* Drawer Footer with Theme Toggle */}

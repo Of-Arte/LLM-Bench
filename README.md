@@ -14,7 +14,7 @@ LLM Bench is a client-side React benchmarking playground designed to evaluate, v
 
 ---
 
-## Architecture and Tech Stack
+## Stack
 
 - **Core**: React 19 (TypeScript), Vite 6
 - **Styling**: Tailwind CSS (loaded and configured client-side)
