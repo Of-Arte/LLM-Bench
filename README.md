@@ -7,16 +7,10 @@ LLM Bench is a client-side React benchmarking playground designed to evaluate, v
 ## Features
 
 - **Parallel Benchmarking**: Run prompt execution tests across multiple models simultaneously, measuring latency in milliseconds and validating output content based on expected criteria.
-- **Unified Scenario Builder**: Create, edit, and delete custom test scenarios. Each scenario defines a system instruction, user prompt, and specific substring validation checks to measure output correctness.
-- **Searchable Model Selection**: Select and manage active models from a searchable dropdown selector. Live connection states are displayed for each model.
-- **Model Status Detection**:
-  - **Connected**: API keys are detected in the environment.
-  - **Demo**: Fallback mode for live deployments where a pre-configured Gemini key is used.
-  - **Offline**: Missing environment credentials.
+- **Scenario Builder**: Create, edit, and delete custom test scenarios. Each scenario defines a system instruction, user prompt, and specific substring validation checks to measure output correctness.
 - **Head-to-Head Comparison**: Compare two model responses side-by-side, or toggle to the historical run dashboard to view latency trendlines and cost-per-run comparisons generated via Recharts.
-- **Custom Model Manager**: Register custom models under supported providers (OpenAI, Anthropic, Google, OpenRouter, Local) by specifying the provider API type, Model ID, and a display name.
-- **Responsive Drawer Navigation**: Toggleable side panel containing navigation routes (Benchmark Suite, Benchmark History, Compare Models), model customization launcher, and an appearance theme toggle (Light / Dark mode).
-- **Direct Client-side Execution**: Queries are executed directly from the browser using the official `@google/genai` SDK or native `fetch` requests. No intermediate server or backend database is used.
+- **Model Status Detection**: API keys are detected in the environment.
+- **Custom Model Manager**: Register custom models under supported providers by specifying the provider API type, Model ID, and a display name.
 
 ---
 
@@ -25,11 +19,6 @@ LLM Bench is a client-side React benchmarking playground designed to evaluate, v
 - **Core**: React 19 (TypeScript), Vite 6
 - **Styling**: Tailwind CSS (loaded and configured client-side)
 - **Charts & Visualization**: Recharts (used for rendering comparative latency trendlines and cost metrics)
-- **Integrations**:
-  - `@google/genai` (native Gemini SDK integrations)
-  - Native `fetch` integrations for Anthropic (`/v1/messages`) and OpenAI-compatible endpoints (`/v1/chat/completions`)
-  - Lucide React for UI iconography
-
 ---
 
 ## Getting Started
@@ -73,31 +62,3 @@ Start the local development server:
 npm run dev
 ```
 Open your browser and navigate to `http://localhost:3000` (or the port specified by the dev server).
-
----
-
-## Deployment
-
-The application is fully static and can be deployed to Vercel, Netlify, or any static hosting platform.
-
-### Vercel Deployment
-
-1. Import the repository into your Vercel Dashboard.
-2. The framework preset will automatically be detected as **Vite**.
-3. Set the **Build Command** to: `npm run build`
-4. Set the **Output Directory** to: `dist`
-5. Configure fallback keys (e.g., `GEMINI_API_KEY`) in the Vercel Environment Variables tab to enable public demo functionality if desired.
-
-### Routing Configuration
-The project contains a `vercel.json` file to manage clean client-side routing rewrites and cache headers for assets:
-```json
-{
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
-}
-```
