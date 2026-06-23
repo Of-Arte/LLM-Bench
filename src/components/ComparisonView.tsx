@@ -333,7 +333,7 @@ export const ComparisonView: React.FC<ComparisonViewProps> = ({ results, onClose
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">Latency Trend</h3>
               </div>
               <div className="h-80 w-full">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                   <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
                     <XAxis dataKey="runName" stroke="#888888" fontSize={11} />
@@ -373,7 +373,7 @@ export const ComparisonView: React.FC<ComparisonViewProps> = ({ results, onClose
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">Cost per Run ($)</h3>
               </div>
               <div className="h-80 w-full">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                   <LineChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#ffffff10" />
                     <XAxis dataKey="runName" stroke="#888888" fontSize={11} />

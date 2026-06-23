@@ -155,8 +155,8 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                         status === 'connected'
                           ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                           : status === 'demo'
-                          ? 'bg-blue-500 shadow-sm shadow-blue-500/50'
-                          : 'bg-gray-300 dark:bg-gray-600'
+                          ? 'bg-red-500 shadow-sm shadow-red-500/50'
+                          : 'bg-red-500 shadow-sm shadow-red-500/50'
                       }`}
                       title={`${m.name} (${status})`}
                     />
@@ -215,8 +215,8 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                           status === 'connected'
                             ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                             : status === 'demo'
-                            ? 'bg-blue-500 shadow-sm shadow-blue-500/50'
-                            : 'bg-gray-300 dark:bg-gray-600'
+                            ? 'bg-red-500 shadow-sm shadow-red-500/50'
+                            : 'bg-red-500 shadow-sm shadow-red-500/50'
                         }`} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">

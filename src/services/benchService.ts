@@ -21,8 +21,11 @@ export const runBenchmark = async (
       
       const ai = new GoogleGenAI({ apiKey });
       
-      // Override model ID to gemini-3.1-flash in demo mode
-      const targetModelId = isDemoMode ? 'gemini-3.1-flash' : model.id;
+      // Map hypothetical/fictional model IDs to actual working Gemini models
+      let targetModelId = isDemoMode ? 'gemini-3.1-flash' : model.id;
+      if (targetModelId === 'gemini-3.1-flash') {
+        targetModelId = 'gemini-2.5-flash';
+      }
 
       const response = await ai.models.generateContent({
         model: targetModelId,

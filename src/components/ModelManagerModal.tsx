@@ -103,8 +103,8 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                         status === 'connected'
                           ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                           : status === 'demo'
-                          ? 'bg-blue-500 shadow-sm shadow-blue-500/50'
-                          : 'bg-gray-300 dark:bg-gray-600'
+                          ? 'bg-red-500 shadow-sm shadow-red-500/50'
+                          : 'bg-red-500 shadow-sm shadow-red-500/50'
                       }`} />
                     </div>
                     <div className="truncate">
@@ -114,8 +114,8 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                           status === 'connected'
                             ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                             : status === 'demo'
-                            ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
-                            : 'bg-gray-100 dark:bg-white/5 text-gray-400'
+                            ? 'bg-red-500/10 text-red-600 dark:text-red-400'
+                            : 'bg-red-500/10 text-red-600 dark:text-red-400'
                         }`}>
                           {status === 'connected' ? 'Connected' : status === 'demo' ? 'Demo' : 'Offline'}
                         </span>
@@ -151,8 +151,8 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                             status === 'connected'
                               ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                               : status === 'demo'
-                              ? 'bg-blue-500 shadow-sm shadow-blue-500/50'
-                              : 'bg-gray-300 dark:bg-gray-600'
+                              ? 'bg-red-500 shadow-sm shadow-red-500/50'
+                              : 'bg-red-500 shadow-sm shadow-red-500/50'
                           }`} />
                         </div>
                         <div className="truncate">
@@ -162,8 +162,8 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                               status === 'connected'
                                 ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                                 : status === 'demo'
-                                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
-                                : 'bg-gray-100 dark:bg-white/5 text-gray-400'
+                                ? 'bg-red-500/10 text-red-600 dark:text-red-400'
+                                : 'bg-red-500/10 text-red-600 dark:text-red-400'
                             }`}>
                               {status === 'connected' ? 'Connected' : status === 'demo' ? 'Demo' : 'Offline'}
                             </span>

@@ -92,7 +92,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ results,
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Average Latency (ms)</h3>
           </div>
           <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <BarChart data={stats} layout="vertical" margin={{ left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" horizontal={false} />
                 <XAxis type="number" stroke="#888888" fontSize={12} />
@@ -125,7 +125,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ results,
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Success Rate (%)</h3>
           </div>
           <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <BarChart data={stats} layout="vertical" margin={{ left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" horizontal={false} />
                 <XAxis type="number" domain={[0, 100]} stroke="#888888" fontSize={12} />
@@ -160,7 +160,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ results,
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Est. Cost per 1k Runs ($)</h3>
           </div>
           <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <BarChart data={stats} layout="vertical" margin={{ left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" horizontal={false} />
                 <XAxis type="number" stroke="#888888" fontSize={12} />
@@ -190,7 +190,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ results,
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Latency Trend (Last 20 Runs)</h3>
           </div>
           <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <LineChart data={trendData} margin={{ left: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
                 <XAxis dataKey="id" stroke="#888888" fontSize={12} />
