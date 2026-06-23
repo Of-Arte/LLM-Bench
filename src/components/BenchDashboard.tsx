@@ -273,7 +273,7 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
               w-full sm:w-auto px-6 py-2 rounded-xl font-bold text-white shadow-md flex items-center justify-center gap-2 transition-all text-xs h-[38px]
               ${isRunning || selectedModels.length === 0 || !selectedScenario
                 ? 'bg-gray-200 dark:bg-slate-800 text-gray-400 dark:text-slate-600 cursor-not-allowed border border-transparent dark:border-white/5 shadow-none'
-                : 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-emerald-600/20 transform hover:scale-[1.02] active:scale-[0.98]'}
+                : 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/20 transform hover:scale-[1.02] active:scale-[0.98]'}
             `}
           >
             {isRunning ? (

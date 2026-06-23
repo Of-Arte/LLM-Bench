@@ -229,31 +229,28 @@ const App: React.FC = () => {
 
       {/* Mobile Sidebar Backdrop Overlay */}
       {isDrawerOpen && (
-        <div 
-          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-300 animate-fade-in" 
+        <div
+          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden transition-opacity duration-300 animate-fade-in"
           onClick={() => setIsDrawerOpen(false)}
         />
       )}
 
       {/* Sidebar Navigation */}
-      <aside className={`fixed inset-y-0 left-0 z-40 bg-white dark:bg-[#111317] border-r border-gray-200/80 dark:border-white/10 flex flex-col transition-all duration-300 ease-in-out ${
-        isDrawerOpen ? 'w-60' : 'w-0 border-r-0'
-      }`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 bg-white dark:bg-[#111317] border-r border-gray-200/80 dark:border-white/10 flex flex-col transition-all duration-300 ease-in-out ${isDrawerOpen ? 'w-60' : 'w-0 border-r-0'
+        }`}>
         {/* Toggle Button sits on the center-right border (Hidden on mobile) */}
         <button
           onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          className={`absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#15181f] text-gray-500 hover:text-gray-800 dark:hover:text-white items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 transition-all z-50 hidden md:flex ${
-            isDrawerOpen ? 'left-full -translate-x-1/2' : 'left-3 translate-x-0'
-          }`}
+          className={`absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#15181f] text-gray-500 hover:text-gray-800 dark:hover:text-white items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 transition-all z-50 hidden md:flex ${isDrawerOpen ? 'left-full -translate-x-1/2' : 'left-3 translate-x-0'
+            }`}
           title={isDrawerOpen ? 'Collapse Navigation' : 'Expand Navigation'}
         >
           {isDrawerOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
         </button>
 
         {/* Sidebar Content (Translates out and fades to prevent overflow & squashing) */}
-        <div className={`w-60 h-full flex flex-col overflow-hidden transition-all duration-300 ${
-          isDrawerOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0 pointer-events-none'
-        }`}>
+        <div className={`w-60 h-full flex flex-col overflow-hidden transition-all duration-300 ${isDrawerOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0 pointer-events-none'
+          }`}>
           {/* Drawer Header */}
           <div className="px-6 py-5 border-b border-gray-200 dark:border-white/10 flex justify-between items-center bg-gray-50/50 dark:bg-black/20">
             <span className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">LLM Bench</span>
@@ -263,11 +260,10 @@ const App: React.FC = () => {
           <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
             <button
               onClick={() => { setView('dashboard'); if (window.innerWidth < 768) setIsDrawerOpen(false); }}
-              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${
-                view === 'dashboard'
-                  ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
-              }`}
+              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${view === 'dashboard'
+                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
+                }`}
             >
               <LayoutGrid size={18} />
               <span>Benchmark Suite</span>
@@ -275,11 +271,10 @@ const App: React.FC = () => {
 
             <button
               onClick={() => { setView('results'); if (window.innerWidth < 768) setIsDrawerOpen(false); }}
-              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${
-                view === 'results'
-                  ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
-              }`}
+              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${view === 'results'
+                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
+                }`}
             >
               <BarChart2 size={18} />
               <span>Benchmark History</span>
@@ -287,11 +282,10 @@ const App: React.FC = () => {
 
             <button
               onClick={() => { setView('compare'); if (window.innerWidth < 768) setIsDrawerOpen(false); }}
-              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${
-                view === 'compare'
-                  ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
-              }`}
+              className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left ${view === 'compare'
+                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold'
+                : 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
+                }`}
             >
               <GitCompare size={18} />
               <span>Compare Models</span>
@@ -344,11 +338,7 @@ const App: React.FC = () => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-h-screen relative z-10">
         {/* Header */}
-        <header className="sticky top-0 z-30 backdrop-blur-lg bg-white/10 dark:bg-[#0f1115]/40 border-b border-gray-200/50 dark:border-white/10 px-6 py-3 flex justify-between items-center">
-          <div className="flex items-center cursor-pointer" onClick={() => setView('dashboard')}>
-            <span className="text-xl font-bold tracking-tight">LLM Bench</span>
-          </div>
-
+        <header className="sticky top-0 z-30 backdrop-blur-lg bg-white/10 dark:bg-[#0f1115]/40 px-6 py-3 flex justify-end items-center">
           <div className="flex items-center gap-3">
             {isRunning && (
               <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-semibold animate-pulse">
@@ -358,9 +348,8 @@ const App: React.FC = () => {
             )}
             <button
               onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-              className={`p-3 rounded-xl transition-all duration-300 ${
-                isDrawerOpen ? 'bg-white/10 text-emerald-500' : 'hover:bg-black/5 dark:hover:bg-white/10 text-gray-700 dark:text-gray-300'
-              }`}
+              className={`p-3 rounded-xl transition-all duration-300 ${isDrawerOpen ? 'bg-white/10 text-emerald-500' : 'hover:bg-black/5 dark:hover:bg-white/10 text-gray-700 dark:text-gray-300'
+                }`}
               title="Toggle Menu"
             >
               <LayoutGrid size={20} />
@@ -406,6 +395,27 @@ const App: React.FC = () => {
             />
           )}
         </main>
+
+        {/* Footer */}
+        <footer className="w-full py-6 mt-auto border-t border-gray-200/50 dark:border-white/5 bg-white/50 dark:bg-[#0f1115]/50 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-gray-900 dark:text-white">LLM Bench</span>
+              <span>•</span>
+              <span>© 2026 of-arte</span>
+            </div>
+            <div className="flex items-center gap-4 flex-wrap justify-center">
+              <a
+                href="https://github.com/Of-Arte/LLM-Bench"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </footer>
 
         {/* Subtle Notification Toast */}
         {notification && (

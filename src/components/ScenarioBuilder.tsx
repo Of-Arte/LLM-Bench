@@ -121,7 +121,7 @@ export const ScenarioBuilder: React.FC<ScenarioBuilderProps> = ({ onSave, onCanc
             </button>
             <button
               onClick={handleSave}
-              className="px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg transform transition active:scale-95 flex items-center gap-2"
+              className="px-6 py-3 rounded-xl font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg transform transition active:scale-95 flex items-center gap-2"
             >
               <Save size={20} />
               Save Scenario
