@@ -77,7 +77,7 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
             Enabled Models
           </h3>
           <p className="text-xs text-gray-400 leading-relaxed">
-            Select which models appear in the dashboard. De-selected models will be hidden.
+            Select which models appear in the dashboard. Disabled models will be hidden. <a href="https://github.com/of-arte/LLM-Bench/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-500 underline">Clone the repo</a> to add your own API keys.
           </p>
 
           <div className="space-y-2 border border-gray-200 dark:border-white/10 rounded-xl p-3 max-h-[40vh] overflow-y-auto bg-black/5 dark:bg-black/20">
@@ -99,24 +99,22 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                       className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                     />
                     <div className="relative flex items-center justify-center shrink-0 ml-1">
-                      <span className={`w-2 h-2 rounded-full ${
-                        status === 'connected'
-                          ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
-                          : status === 'demo'
+                      <span className={`w-2 h-2 rounded-full ${status === 'connected'
+                        ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
+                        : status === 'demo'
                           ? 'bg-red-500 shadow-sm shadow-red-500/50'
                           : 'bg-red-500 shadow-sm shadow-red-500/50'
-                      }`} />
+                        }`} />
                     </div>
                     <div className="truncate">
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gray-900 dark:text-white truncate">{model.name}</span>
-                        <span className={`text-[8px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider ${
-                          status === 'connected'
-                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                            : status === 'demo'
+                        <span className={`text-[8px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider ${status === 'connected'
+                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                          : status === 'demo'
                             ? 'bg-red-500/10 text-red-600 dark:text-red-400'
                             : 'bg-red-500/10 text-red-600 dark:text-red-400'
-                        }`}>
+                          }`}>
                           {status === 'connected' ? 'Connected' : status === 'demo' ? 'Demo' : 'Offline'}
                         </span>
                       </div>
@@ -147,24 +145,22 @@ export const ModelManagerModal: React.FC<ModelManagerModalProps> = ({
                           className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                         />
                         <div className="relative flex items-center justify-center shrink-0 ml-1">
-                          <span className={`w-2 h-2 rounded-full ${
-                            status === 'connected'
-                              ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
-                              : status === 'demo'
+                          <span className={`w-2 h-2 rounded-full ${status === 'connected'
+                            ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
+                            : status === 'demo'
                               ? 'bg-red-500 shadow-sm shadow-red-500/50'
                               : 'bg-red-500 shadow-sm shadow-red-500/50'
-                          }`} />
+                            }`} />
                         </div>
                         <div className="truncate">
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-medium text-gray-900 dark:text-white truncate">{model.name}</span>
-                            <span className={`text-[8px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider ${
-                              status === 'connected'
-                                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                                : status === 'demo'
+                            <span className={`text-[8px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider ${status === 'connected'
+                              ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                              : status === 'demo'
                                 ? 'bg-red-500/10 text-red-600 dark:text-red-400'
                                 : 'bg-red-500/10 text-red-600 dark:text-red-400'
-                            }`}>
+                              }`}>
                               {status === 'connected' ? 'Connected' : status === 'demo' ? 'Demo' : 'Offline'}
                             </span>
                           </div>
