@@ -2,6 +2,8 @@
 
 LLM Bench is a client-side React benchmarking playground designed to evaluate, validate, and compare LLM prompt execution, latency, cost, and capability in real time across multiple providers and models. The application interfaces directly with API endpoints (OpenAI, Anthropic, Google Gemini, OpenRouter, and Local API instances) to track response accuracy and execution speed.
 
+![LLM Bench Chart](./chart.png)
+
 ---
 
 ## Features
