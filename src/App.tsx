@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MODELS } from './constants';
 import { AppSettings } from './types';
-import { BenchmarkResult, TestScenario } from './src/types/bench';
-import { SCENARIOS } from './src/engine/data';
-import { runBenchmark } from './src/services/benchService';
-import { BenchDashboard } from './src/components/BenchDashboard';
-import { BenchResults } from './src/components/BenchResults';
-import { ComparisonView } from './src/components/ComparisonView';
-import { ScenarioBuilder } from './src/components/ScenarioBuilder';
-import { ModelManagerModal } from './src/components/ModelManagerModal';
+import { BenchmarkResult, TestScenario } from './types/bench';
+import { SCENARIOS } from './engine/data';
+import { runBenchmark } from './services/benchService';
+import { BenchDashboard } from './components/BenchDashboard';
+import { BenchResults } from './components/BenchResults';
+import { ComparisonView } from './components/ComparisonView';
+import { ScenarioBuilder } from './components/ScenarioBuilder';
+import { ModelManagerModal } from './components/ModelManagerModal';
 import { LayoutGrid, BarChart2, Sun, Moon, GitCompare, Menu, X, ChevronLeft, ChevronRight, Github } from 'lucide-react';
 import { Model } from './types';
 

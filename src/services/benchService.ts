@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 import { GoogleGenAI } from "@google/genai";
-import { Model } from "../../types";
+import { Model } from "../types";
 import { TestScenario, BenchmarkResult } from "../types/bench";
 
 export const runBenchmark = async (

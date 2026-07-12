@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Model } from '../../types';
+import { Model } from '../types';
 import { GlassModal } from './ui/GlassModal';
 import { Trash2, Plus, AlertCircle } from 'lucide-react';
 import { getModelStatus } from '../services/benchService';

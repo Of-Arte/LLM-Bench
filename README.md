@@ -2,7 +2,7 @@
 
 LLM Bench is a client-side React benchmarking playground designed to evaluate, validate, and compare LLM prompt execution, latency, cost, and capability in real time across multiple providers and models. The application interfaces directly with API endpoints (OpenAI, Anthropic, Google Gemini, OpenRouter, and Local API instances) to track response accuracy and execution speed.
 
-![LLM Bench Chart](./chart.png)
+![LLM Bench Chart](./public/chart.png)
 
 ---
 
@@ -64,3 +64,30 @@ Start the local development server:
 npm run dev
 ```
 Open your browser and navigate to `http://localhost:3000` (or the port specified by the dev server).
+
+---
+
+## Project Structure
+
+The project follows a standard React + Vite layout:
+
+```text
+LLM-Bench/
+├── public/                 # Static assets (favicons, etc.)
+│   └── .gitkeep
+├── src/                    # Application source code
+│   ├── components/         # React components (Dashboard, Results, comparison, etc.)
+│   │   └── ui/             # Glassmorphic UI elements
+│   ├── engine/             # Static benchmark dataset and configuration
+│   ├── services/           # API and benchmarking runner services
+│   ├── types/              # Type definitions (benchmark and settings types)
+│   ├── App.tsx             # Main layout and view state component
+│   ├── constants.ts        # Model lists, default config and settings
+│   ├── index.css           # Global style declarations (Tailwind CSS imports)
+│   ├── index.tsx           # React mounting entrypoint
+│   └── types.ts            # Global model definitions
+├── index.html              # HTML markup entry point
+├── package.json            # Node project configuration and dependencies
+├── tsconfig.json           # TypeScript configuration with aliases
+└── vite.config.ts          # Vite bundler options and environment configuration
+```

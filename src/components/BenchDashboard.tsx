@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Model } from '../../types';
+import { Model } from '../types';
 import { TestScenario } from '../types/bench';
 import { GlassCard } from './ui/GlassCard';
 import { Play, CheckCircle, XCircle, Lock, EyeOff, Plus, Trash2, Pencil, ChevronDown, ChevronUp, Search } from 'lucide-react';
