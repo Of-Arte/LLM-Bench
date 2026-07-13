@@ -154,8 +154,6 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                       className={`w-1.5 h-1.5 rounded-full ring-1 ring-white/10 ${
                         status === 'connected'
                           ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
-                          : status === 'demo'
-                          ? 'bg-red-500 shadow-sm shadow-red-500/50'
                           : 'bg-red-500 shadow-sm shadow-red-500/50'
                       }`}
                       title={`${m.name} (${status})`}
@@ -214,8 +212,6 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                         <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
                           status === 'connected'
                             ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
-                            : status === 'demo'
-                            ? 'bg-red-500 shadow-sm shadow-red-500/50'
                             : 'bg-red-500 shadow-sm shadow-red-500/50'
                         }`} />
                         <div className="flex-1 min-w-0">

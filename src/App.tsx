@@ -298,7 +298,7 @@ const App: React.FC = () => {
               className="w-full flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all font-medium text-sm text-left text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5"
             >
               <span className="text-lg">⚙️</span>
-              <span>Customize Models</span>
+              <span>Settings</span>
             </button>
 
             <a

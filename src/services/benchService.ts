@@ -3,6 +3,38 @@ import { GoogleGenAI } from "@google/genai";
 import { Model } from "../types";
 import { TestScenario, BenchmarkResult } from "../types/bench";
 
+// ---------------------------------------------------------------------------
+// User-supplied API key storage
+// Keys are entered by the user in the UI and stored in localStorage.
+// ---------------------------------------------------------------------------
+
+const KEY_STORAGE = 'llmbench_provider_keys';
+
+export interface ProviderKeys {
+  gemini?: string;
+  openai?: string;
+  anthropic?: string;
+  openrouter?: string;
+  localEndpoint?: string;
+}
+
+export const getProviderKeys = (): ProviderKeys => {
+  try {
+    const stored = localStorage.getItem(KEY_STORAGE);
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+};
+
+export const saveProviderKeys = (keys: ProviderKeys): void => {
+  localStorage.setItem(KEY_STORAGE, JSON.stringify(keys));
+};
+
+// ---------------------------------------------------------------------------
+// Benchmark runner
+// ---------------------------------------------------------------------------
+
 export const runBenchmark = async (
   model: Model,
   scenario: TestScenario
@@ -12,34 +44,30 @@ export const runBenchmark = async (
   let cost = 0;
 
   try {
-    const status = getModelStatus(model);
-    const isDemoMode = status === 'demo';
+    const keys = getProviderKeys();
 
-    if (model.provider === 'google' || isDemoMode) {
-      const apiKey = import.meta.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY || process.env.API_KEY;
-      if (!apiKey) throw new Error("Gemini API Key required in environment. Configure it in the codebase.");
-      
+    if (model.provider === 'google') {
+      const apiKey = keys.gemini;
+      if (!apiKey) throw new Error("Gemini API Key not configured. Add it via Settings → API Keys.");
+
       const ai = new GoogleGenAI({ apiKey });
-      
-      // Map hypothetical/fictional model IDs to actual working Gemini models
-      let targetModelId = isDemoMode ? 'gemini-3.1-flash' : model.id;
-      if (targetModelId === 'gemini-3.1-flash') {
-        targetModelId = 'gemini-2.5-flash';
-      }
+
+      // Map fictional/preview model IDs to real Gemini model IDs
+      let targetModelId = model.id;
+      if (targetModelId === 'gemini-3.1-flash') targetModelId = 'gemini-2.5-flash';
+      if (targetModelId === 'gemini-3.1-pro-preview') targetModelId = 'gemini-2.5-pro-preview-06-05';
 
       const response = await ai.models.generateContent({
         model: targetModelId,
         contents: scenario.prompt,
-        config: {
-          temperature: 0
-        }
+        config: { temperature: 0 }
       });
 
       rawResponse = response.text || "";
 
     } else if (model.provider === 'anthropic') {
-      const apiKey = import.meta.env.ANTHROPIC_API_KEY || import.meta.env.VITE_ANTHROPIC_API_KEY;
-      if (!apiKey) throw new Error("Anthropic API Key required in environment. Configure it in the codebase.");
+      const apiKey = keys.anthropic;
+      if (!apiKey) throw new Error("Anthropic API Key not configured. Add it via Settings → API Keys.");
 
       const response = await fetch(`https://api.anthropic.com/v1/messages`, {
         method: "POST",
@@ -58,38 +86,34 @@ export const runBenchmark = async (
       });
 
       if (!response.ok) {
-         const err = await response.json().catch(() => ({}));
-         throw new Error(err.error?.message || `Anthropic API Error (HTTP ${response.status})`);
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error?.message || `Anthropic API Error (HTTP ${response.status})`);
       }
 
       const json = await response.json();
       rawResponse = json.content?.[0]?.text || "";
 
     } else {
-      // OpenAI, Local, OpenRouter all use OpenAI-compatible endpoints
+      // OpenAI, Local, and OpenRouter all use the OpenAI-compatible chat completions endpoint
       let baseUrl = "";
       let apiKey = "";
-      let headers: Record<string, string> = {
-        "Content-Type": "application/json"
-      };
+      let headers: Record<string, string> = { "Content-Type": "application/json" };
 
       if (model.provider === 'openai') {
-        apiKey = import.meta.env.OPENAI_API_KEY || import.meta.env.VITE_OPENAI_API_KEY || '';
-        if (!apiKey) throw new Error("OpenAI API Key required in environment. Configure it in the codebase.");
+        apiKey = keys.openai || '';
+        if (!apiKey) throw new Error("OpenAI API Key not configured. Add it via Settings → API Keys.");
         baseUrl = "https://api.openai.com/v1";
         headers["Authorization"] = `Bearer ${apiKey}`;
-      } 
-      else if (model.provider === 'local') {
-        baseUrl = import.meta.env.LOCAL_ENDPOINT || import.meta.env.VITE_LOCAL_ENDPOINT || 'http://localhost:11434/v1';
-        if (!baseUrl) throw new Error("Local API Endpoint URL required in environment. Configure LOCAL_ENDPOINT in the codebase.");
-        // Strip trailing slash
+
+      } else if (model.provider === 'local') {
+        baseUrl = keys.localEndpoint || 'http://localhost:11434/v1';
         if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
-      }
-      else {
-        // openrouter (or default fallback)
-        apiKey = import.meta.env.OPENROUTER_API_KEY || import.meta.env.VITE_OPENROUTER_API_KEY || '';
-        if (!apiKey) throw new Error("OpenRouter API Key required in environment. Configure it in the codebase.");
-        baseUrl = import.meta.env.OPENROUTER_ENDPOINT || import.meta.env.VITE_OPENROUTER_ENDPOINT || "https://openrouter.ai/api/v1";
+
+      } else {
+        // openrouter (default fallback)
+        apiKey = keys.openrouter || '';
+        if (!apiKey) throw new Error("OpenRouter API Key not configured. Add it via Settings → API Keys.");
+        baseUrl = "https://openrouter.ai/api/v1";
         headers["Authorization"] = `Bearer ${apiKey}`;
         headers["HTTP-Referer"] = window.location.href;
         headers["X-Title"] = "LLM Bench";
@@ -106,8 +130,8 @@ export const runBenchmark = async (
       });
 
       if (!response.ok) {
-         const err = await response.json().catch(() => ({}));
-         throw new Error(err.error?.message || `API Error (HTTP ${response.status})`);
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error?.message || `API Error (HTTP ${response.status})`);
       }
 
       const json = await response.json();
@@ -115,20 +139,17 @@ export const runBenchmark = async (
       rawResponse = choice?.message?.content || "";
     }
 
-    // Estimate tokens (rough approximation: 4 chars = 1 token)
-    const inputChars = scenario.prompt.length;
-    const outputChars = rawResponse.length;
-    
-    const inputTokens = Math.ceil(inputChars / 4);
-    const outputTokens = Math.ceil(outputChars / 4);
+    // Estimate tokens (rough approximation: 4 chars ≈ 1 token)
+    const inputTokens = Math.ceil(scenario.prompt.length / 4);
+    const outputTokens = Math.ceil(rawResponse.length / 4);
 
-    // Calculate cost (Model costs are usually per 1M tokens)
-    const inputCost = (inputTokens / 1000000) * model.costInput;
-    const outputCost = (outputTokens / 1000000) * model.costOutput;
+    // Cost per 1M tokens
+    const inputCost = (inputTokens / 1_000_000) * model.costInput;
+    const outputCost = (outputTokens / 1_000_000) * model.costOutput;
     cost = inputCost + outputCost;
 
     const latency = performance.now() - startTime;
-    
+
     let success = true;
     if (scenario.expectedContains && scenario.expectedContains.length > 0) {
       const lowerResp = rawResponse.toLowerCase();
@@ -148,7 +169,7 @@ export const runBenchmark = async (
     };
 
   } catch (error: any) {
-    console.warn("Benchmark run skipped or failed: ", error.message || error);
+    console.warn("Benchmark run skipped or failed:", error.message || error);
     return {
       scenarioId: scenario.id,
       modelId: model.id,
@@ -162,50 +183,24 @@ export const runBenchmark = async (
   }
 };
 
+// ---------------------------------------------------------------------------
+// Model connection status
+// Reads from user-supplied localStorage keys only — no env vars, no URL params.
+// ---------------------------------------------------------------------------
+
 export const isModelConnected = (model: Model): boolean => {
-  const provider = model.provider?.toLowerCase();
-  switch (provider) {
-    case 'google':
-      return !!(
-        import.meta.env.GEMINI_API_KEY ||
-        import.meta.env.VITE_GEMINI_API_KEY ||
-        (typeof process !== 'undefined' && process.env && (process.env.API_KEY || process.env.GEMINI_API_KEY))
-      );
-    case 'openai':
-      return !!(import.meta.env.OPENAI_API_KEY || import.meta.env.VITE_OPENAI_API_KEY);
-    case 'anthropic':
-      return !!(import.meta.env.ANTHROPIC_API_KEY || import.meta.env.VITE_ANTHROPIC_API_KEY);
-    case 'openrouter':
-      return !!(import.meta.env.OPENROUTER_API_KEY || import.meta.env.VITE_OPENROUTER_API_KEY);
-    case 'local':
-      return true;
-    default:
+  const keys = getProviderKeys();
+  switch (model.provider?.toLowerCase()) {
+    case 'google':     return !!keys.gemini;
+    case 'openai':     return !!keys.openai;
+    case 'anthropic':  return !!keys.anthropic;
+    case 'openrouter': return !!keys.openrouter;
+    case 'local':      return true; // local endpoint is always "available"
+    default:           return false;
   }
 };
 
-export type ModelStatus = 'connected' | 'demo' | 'offline';
+export type ModelStatus = 'connected' | 'offline';
 
-export const getModelStatus = (model: Model): ModelStatus => {
-  if (isModelConnected(model)) {
-    return 'connected';
-  }
-
-  const hasGeminiKey = !!(
-    import.meta.env.GEMINI_API_KEY ||
-    import.meta.env.VITE_GEMINI_API_KEY ||
-    (typeof process !== 'undefined' && process.env && (process.env.API_KEY || process.env.GEMINI_API_KEY))
-  );
-
-  const isLive = typeof window !== 'undefined' && (
-    (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') ||
-    window.location.search.includes('demo=true')
-  );
-
-  if (isLive && hasGeminiKey) {
-    return 'demo';
-  }
-
-  return 'offline';
-};
-
-
+export const getModelStatus = (model: Model): ModelStatus =>
+  isModelConnected(model) ? 'connected' : 'offline';
