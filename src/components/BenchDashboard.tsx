@@ -26,18 +26,17 @@ const CollapsiblePrompt: React.FC<{ prompt: string }> = ({ prompt }) => {
   }, [prompt, isExpanded]);
 
   return (
-    <div 
+    <div
       onClick={(e) => {
         if (isTruncated || isExpanded) {
           e.stopPropagation();
           setIsExpanded(!isExpanded);
         }
       }}
-      className={`text-xs font-mono bg-black/5 dark:bg-white/5 p-2 rounded text-gray-600 dark:text-gray-400 transition-colors ${
-        (isTruncated || isExpanded) ? 'cursor-pointer hover:bg-black/10 dark:hover:bg-white/10' : ''
-      }`}
+      className={`text-xs font-mono bg-black/5 dark:bg-white/5 p-2 rounded text-gray-600 dark:text-gray-400 transition-colors ${(isTruncated || isExpanded) ? 'cursor-pointer hover:bg-black/10 dark:hover:bg-white/10' : ''
+        }`}
     >
-      <div 
+      <div
         ref={textRef}
         className={isExpanded ? 'whitespace-pre-wrap' : 'line-clamp-2'}
       >
@@ -140,7 +139,7 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                   : `${selectedModels.length} Model${selectedModels.length > 1 ? 's' : ''} Selected`}
               </span>
             </div>
-            
+
             <div className="flex items-center gap-2 shrink-0 ml-auto">
               {/* Previews of active model connection states */}
               <div className="flex items-center gap-1">
@@ -151,11 +150,10 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                   return (
                     <span
                       key={id}
-                      className={`w-1.5 h-1.5 rounded-full ring-1 ring-white/10 ${
-                        status === 'connected'
+                      className={`w-1.5 h-1.5 rounded-full ring-1 ring-white/10 ${status === 'connected'
                           ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                           : 'bg-red-500 shadow-sm shadow-red-500/50'
-                      }`}
+                        }`}
                       title={`${m.name} (${status})`}
                     />
                   );
@@ -199,9 +197,8 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                       <div
                         key={model.id}
                         onClick={() => onToggleModel(model.id)}
-                        className={`flex items-center gap-2 p-2 rounded-xl cursor-pointer transition-all hover:bg-black/5 dark:hover:bg-white/5 select-none ${
-                          isSelected ? 'bg-blue-500/5 dark:bg-blue-500/10' : ''
-                        }`}
+                        className={`flex items-center gap-2 p-2 rounded-xl cursor-pointer transition-all hover:bg-black/5 dark:hover:bg-white/5 select-none ${isSelected ? 'bg-blue-500/5 dark:bg-blue-500/10' : ''
+                          }`}
                       >
                         <input
                           type="checkbox"
@@ -209,11 +206,10 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                           readOnly
                           className="rounded border-gray-300 dark:border-white/10 text-blue-600 focus:ring-blue-500 shrink-0"
                         />
-                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                          status === 'connected'
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${status === 'connected'
                             ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50'
                             : 'bg-red-500 shadow-sm shadow-red-500/50'
-                        }`} />
+                          }`} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span className="font-semibold text-xs text-gray-900 dark:text-white truncate">
@@ -252,7 +248,7 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                     }}
                     className="text-[11px] font-bold text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1"
                   >
-                    <Plus size={10} /> Customize Suite
+                    <Plus size={10} /> Add API Keys
                   </button>
                 </div>
               )}
@@ -327,12 +323,12 @@ export const BenchDashboard: React.FC<BenchDashboardProps> = ({
                     text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider
                     ${scenario.difficulty === 'basic' ? 'bg-green-100 text-green-800 dark:bg-green-500/10 dark:text-green-400' :
                       scenario.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/10 dark:text-yellow-400' :
-                      scenario.difficulty === 'advanced' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/10 dark:text-orange-400' :
-                      'bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400'}
+                        scenario.difficulty === 'advanced' ? 'bg-orange-100 text-orange-800 dark:bg-orange-500/10 dark:text-orange-400' :
+                          'bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400'}
                   `}>
                     {scenario.difficulty}
                   </span>
-                  
+
                   <div className="flex items-center gap-1 shrink-0">
                     {onEditScenario && (
                       <button
